@@ -1,0 +1,6 @@
+[submodule "AudioFileWAVReader"]
+	path = AudioFileWAVReader
+	url = https://github.com/slaventiysvat/AudioFileWAVReader.git
+[submodule "eigen"]
+	path = eigen
+	url = https://gitlab.com/libeigen/eigen
