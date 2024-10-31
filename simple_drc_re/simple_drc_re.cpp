@@ -9,7 +9,7 @@
 #include <stdint.h>
 #include <conio.h>
 #include "drc_processor.h"
-
+#include "dynamic_range_controller.h"
 //simple 16 bit arrays
 int16_t in[MAX_SIZE_ARRAY] = { 0 };//16bit values
 
@@ -18,6 +18,30 @@ int16_t out[MAX_SIZE_ARRAY] = { 0 };//16bit values
 int16_t envelope[MAX_SIZE_ARRAY] = { 0 };//16bit values
 
 int main(int argc, char* argv[]) {
+
+
+	drc_settings<float> settings1;
+	drc_settings<float> settings2;
+	
+	settings1.NT = 50.0f;
+	settings1.ET = 50.0f;
+	settings1.CT = 50.0f;
+	settings1.LT = 50.0f;
+	settings1.k_nt = 150.0f;
+	settings1.b_nt = 150.0f;
+	settings1.k_et = 150.0f;
+	settings1.b_et = 150.0f;
+	settings1.k_ct = 150.0f;
+	settings1.b_ct = 150.0f;
+	settings1.k_lt = 150.0f;
+	settings1.b_lt = 150.0f;
+	settings1.gain = 150.0f;
+	settings1.input_signal = std::vector<float>(30,50);
+	settings1.out_signal = std::vector<float>(30, 50);
+
+	drc_settings<float> settings3 = settings1;
+	settings2 = settings1;
+
 
 	FILE* fp_in = fopen("../wav_in/check_16_11025.raw", "rb");
 
@@ -35,8 +59,6 @@ int main(int argc, char* argv[]) {
 		return EXIT_FAILURE;
 
 	}
-
-
 
 
 	size_t len_out = 0;
